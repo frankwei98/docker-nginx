@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -y update
 
 # Install some necessary software
-RUN apt-get install -y make gcc wget
+RUN apt-get install -y make gcc wget software-properties-common
 
 # Install Nginx.
 RUN \
