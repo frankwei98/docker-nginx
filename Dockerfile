@@ -10,3 +10,5 @@ RUN apt-get -y update
 # Install some necessary software and nginx
 RUN apt-get install -y make gcc wget
 RUN apt-get install -y nginx
+
+EXPOSE 80
