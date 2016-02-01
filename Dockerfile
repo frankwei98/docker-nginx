@@ -42,7 +42,6 @@ RUN echo 'Defaults !requiretty' >> /etc/sudoers; \
     echo 'node ALL= NOPASSWD: /usr/sbin/dpkg-reconfigure -f noninteractive tzdata, /usr/bin/tee /etc/timezone, /bin/chown -R node\:node /myapp' >> /etc/sudoers;
 
 #run all of the following commands as user node from now on
-USER node
 
 RUN wget https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
 
