@@ -33,29 +33,26 @@ EXPOSE 80
 EXPOSE 443
 
 
-# Install Node.js
+# Install Node.js by using NVM
 RUN \
-  cd /tmp && \
-  wget http://nodejs.org/dist/node-latest.tar.gz && \
-  tar xvzf node-latest.tar.gz && \
-  rm -f node-latest.tar.gz && \
-  cd node-v* && \
-  ./configure && \
-  CXX="g++ -Wno-unused-local-typedefs" make && \
-  CXX="g++ -Wno-unused-local-typedefs" make install && \
-  cd /tmp && \
-  rm -rf /tmp/node-v* && \
-  npm install -g npm && \
-  printf '\n# Node.js\nexport PATH="node_modules/.bin:$PATH"' >> /root/.bashrc
+  wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.30.1/install.sh | bash
+  nvm install 4.2.4
+  nvm use 4.2.4
+
 
 # Define working directory.
 WORKDIR /data
 
 # Download Ghost
 RUN \
+  cd /home  && \
+  mkdir node  && \
+  cd node  && \
   wget http://dl.ghostchina.com/Ghost-0.7.4-zh-full.zip  && \
   unzip Ghost-0.7.4-zh-full.zip  && \
-  mv config.example.js config.js  && \
-  sed -i  's/127.0.0.1/xxx.xxx.xxx.xxx/g' config.js
+  mv config.example.js config.js
+
+# Define working directory.
+WORKDIR /home/node
   
 CMD ["npm start"]
