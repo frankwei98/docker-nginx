@@ -54,7 +54,8 @@ WORKDIR /data
 # Download Ghost
 RUN \
   wget http://dl.ghostchina.com/Ghost-0.7.4-zh-full.zip  && \
-  unzip Ghost-0.7.4-zh-full.zip
-  mv config.example.js config.js
+  unzip Ghost-0.7.4-zh-full.zip  && \
+  mv config.example.js config.js  && \
   sed -i  's/127.0.0.1/xxx.xxx.xxx.xxx/g' config.js
+  
 CMD ["npm start"]
