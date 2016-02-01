@@ -33,7 +33,8 @@ EXPOSE 80
 EXPOSE 443
 
 ####################OK Above###################Testing Below###################
-RUN apt-get -y install node-gyp nodejs npm node
+# Install NodeJS
+RUN sudo apt-get install -y nodejs npm
 
 # Download Ghost
 RUN \
@@ -42,8 +43,8 @@ RUN \
   cd node  && \
   wget http://dl.ghostchina.com/Ghost-0.7.4-zh-full.zip  && \
   unzip Ghost-0.7.4-zh-full.zip  && \
-  mv config.example.js config.js
-
+  mv config.example.js config.js  && \
+  npm install --production
 # Install Ghost
 RUN chmod a+x /start.sh
 add . /
