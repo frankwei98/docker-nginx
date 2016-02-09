@@ -30,27 +30,3 @@ CMD ["nginx"]
 
 # Expose ports.
 EXPOSE 80
-EXPOSE 443
-
-####################OK Above###################Testing Below###################
-# Install NodeJS
-RUN sudo apt-get install -y nodejs npm
-
-# Download Ghost
-RUN \
-  cd /home  && \
-  mkdir node  && \
-  cd node  && \
-  wget http://dl.ghostchina.com/Ghost-0.7.4-zh-full.zip  && \
-  unzip Ghost-0.7.4-zh-full.zip  && \
-  mv config.example.js config.js  && \
-  npm install --production
-# Install Ghost
-RUN chmod a+x /start.sh
-add . /
-RUN npm install
-
-CMD ['/start.sh']
-
-# Define working directory.
-WORKDIR /home/node
